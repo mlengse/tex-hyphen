@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.date = '2018-12-30'
   s.summary = 'TeX hyphenation patterns as a gem'
   s.description = 'Hyphenation patterns for Ruby, as used by the TeX typesetting system.'
-  s.authors = ['Mojca Miklavec', 'Arthur Reutenauer']
-  s.email = "info@hyphenation.org"
+  s.authors = ["mLengse (medotsys@gmail.com)"]
+  s.email = "medotsys@gmail.com"
   s.files = ['hyph-utf8/source/generic/hyph-utf8/spec/tex/hyphen/language_spec.rb'] +
     Dir.glob('hyph-utf8/source/generic/hyph-utf8/lib/tex/hyphen/*') +
     Dir.glob('hyph-utf8/source/generic/hyph-utf8/lib/tex/hyphen/texlive/*') +
