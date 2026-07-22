@@ -1,4 +1,12 @@
 *.log
 *.tuc
+*.gem
+*.swp
 Gemfile.lock
+.bundle/
+vendor/
+tmp/
 .idea/
+.byebug_history
+.direnv/
+coverage/
