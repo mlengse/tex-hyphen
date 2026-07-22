@@ -38,16 +38,6 @@ class OldLanguage
 
 	# TODO self.find
 
-	# def lc_characters
-	# 	if @lc_characters == nil
-	# 		lc_characters = Hash.new
-	# 		p = self.patterns
-	# 		p.each do |pattern|
-	# 		end
-	# 	end
-	# 	return @lc_characters
-	# end
-
 	attr_reader :use_old_loader, :use_old_patterns_comment, :filename_old_patterns
 	attr_reader :code, :name, :message
 	attr_reader :description_l

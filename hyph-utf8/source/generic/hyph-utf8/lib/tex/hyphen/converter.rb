@@ -32,9 +32,9 @@ module TeX
           doconvert = false if doconvert && line =~ /}/
 
           if doconvert
-            output += (line.strip.each_byte.map do |byte|
+            output += line.strip.each_byte.map { |byte|
               @mapping[byte]
-            end || '').join
+            }.join
             output += "\n"
           end
         end

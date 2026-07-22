@@ -178,53 +178,6 @@ describe Language do
     end
   end
 
-#   describe '#name' do
-#     let(:new_orthography_german) { Language.new('de-1996') }
-#
-#     it "returns the name" do
-#       expect(new_orthography_german.name).to eq 'German, reformed spelling'
-#     end
-#
-#     it "calls #extract_metadata first if necessary" do
-#       expect(new_orthography_german).to receive(:extract_metadata).and_return({ 'name' => 'German, reformed spelling' })
-#       new_orthography_german.name
-#     end
-#
-#     it "doesn’t call #extract_metadata if @name is already set" do
-#       new_orthography_german.instance_variable_set :@name, 'Deutch in neuer Rechtschreibung'
-#       expect(new_orthography_german).not_to receive :extract_metadata
-#       new_orthography_german.name
-#     end
-#   end
-
-  # describe '#displayname' do
-  #   it "returns @name most of the name" do
-  #     romansh = Language.new('rm')
-  #     expect(romansh.displayname).to eq 'Romansh'
-  #   end
-
-  #   it "strips to the language subtag part" do
-  #     polytonic_greek = Language.new('el-polyton')
-  #     expect(polytonic_greek.displayname).to eq 'Greek'
-  #   end
-
-  #   it "returns Norwegian for [nb] and [no]" do
-  #     bokmål = Language.new('nb')
-  #     expect(bokmål.displayname).to eq 'Norwegian'
-  #   end
-
-  #   it "returns Serbian for [sh]" do
-  #     serbocroatian_cyrillic = Language.new('sh-cyrl')
-  #     expect(serbocroatian_cyrillic.displayname).to eq 'Serbian'
-  #   end
-
-  #   it "calls #extract_metadata if needed" do
-  #     friulan = Language.new('fur')
-  #     expect(friulan).to receive :extract_metadata
-  #     friulan.displayname
-  #   end
-  # end
-
   describe '#babelname' do
     it "returns the Babel name" do
       expect(Language.new('de-1996').babelname).to eq 'ngerman'
@@ -236,16 +189,6 @@ describe Language do
       german_CH.babelname
     end
   end
-
-  # describe '#packagename' do
-  #   it "returns the package name for TeX Live" do
-  #     expect(Language.new('gu').packagename).to eq 'indic'
-  #   end
-
-  #   it "uses some questionable choices" do
-  #     expect(Language.new('grc').packagename).to eq 'ancient greek'
-  #   end
-  # end
 
   describe '#licences' do
     let(:church_slavonic) { Language.new('cu') }
@@ -375,10 +318,6 @@ describe Language do
   end
 
   describe '#<=>' do
-#     it "compares Language’s using @name’s" do
-#       expect(Language.new('de-1996') <=> Language.new('fr')).to eq 1
-#     end
-
     it "uses BCP47 codes if names are not available" do
       expect(Language.new('zh-latn-pinyin') <=> Language.new('cu')).to eq 1
     end

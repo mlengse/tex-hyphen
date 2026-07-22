@@ -70,7 +70,7 @@ class HyphEncoding
 					skip_this_string = true
 					new_string[i] = sprintf("[U+%04X]", c)
 				else
-					puts sprintf("There must be an error: character U+%04X in string '%s' is not ASCII or %s.", c, str, @encoding_name.upcase)
+					warn sprintf("There must be an error: character U+%04X in string '%s' is not ASCII or %s.", c, str, @encoding_name.upcase)
 				end
 			# an unicode character
 			else
