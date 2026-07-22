@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-require 'byebug'
-
 # this file auto-generates tlpsrc files for hyphenation patterns - to be improved
 
 require_relative 'lib/tex/hyphen'
