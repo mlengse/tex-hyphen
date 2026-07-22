@@ -73,7 +73,6 @@ module TeX
         end
 
         def list_run_files
-          # byebug if @bcp47 == "grc-x-ibycus"
           if use_old_loader
             unless @bcp47 == "grc-x-ibycus" # FIXME AR 2025-03-31
               return [path('tex', "hyph-#{@bcp47}.tex")]
@@ -88,7 +87,6 @@ module TeX
             files << path('quote', sprintf("hyph-quote-%s.tex", bcp47))
           end
 
-          # byebug if @bcp47 =~ /^grc/
           files << path('tex', sprintf('hyph-%s.tex', bcp47)) # unless @bcp47 == "grc-x-ibycus" # FIXME AR 2025-03-31
           Dir.glob(File.join('hyph-utf8', path('ptex', "hyph-#{bcp47}.*.tex"))) do |file|
             files << file.gsub(/^hyph-utf8\//, '')
