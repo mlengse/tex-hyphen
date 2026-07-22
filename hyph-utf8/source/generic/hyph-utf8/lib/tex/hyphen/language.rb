@@ -1,6 +1,5 @@
 require 'psych'
 require 'hydra'
-require 'byebug'
 require 'date'
 
 require_relative 'path'
