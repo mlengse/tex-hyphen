@@ -1010,7 +1010,7 @@ describe Converter do
       mapping = converter.instance_variable_get(:@mapping)
       expect(mapping).to be_a Hash
       expect(mapping.count).to be_equal 42
-      expect(mapping[248]).to be == 'ш'
+      expect(mapping[248]).to eq('ш')
     end
   end
 
