@@ -79,9 +79,9 @@ module TeX
             else
               return []
             end
-          else # We’re not returning here, but it makes the branching clearer
-            files = [File.join(PATH::HYPHU8, 'loadhyph', loadhyph)]
           end
+
+          files = [File.join(PATH::HYPHU8, 'loadhyph', loadhyph)]
 
           if has_apostrophes?
             files << path('quote', sprintf("hyph-quote-%s.tex", bcp47))
@@ -102,6 +102,7 @@ module TeX
             files << file if File.exist? File.join('hyph-utf8', file)
           end
 
+          # TODO AR 2026-02-20 Remove after TeX Live freeze?
           if bcp47 =~ /^sh-/
             # duplicate entries (will be removed later)
             files << path('tex', 'hyph-sr-cyrl.tex')

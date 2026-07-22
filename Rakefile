@@ -35,8 +35,8 @@ task :plain do
 end
 
 task :ctan do
-  system "tools/make_CTAN_zip.sh"
+  system "tools/make_CTAN_zip.sh" unless ENV['DRY_RUN']
 end
 
 # TODO: Rubocop
-task build: %w[converters loaders ptex texlive plain ctan]
+task build: %w[converters loaders ptex plain texlive ctan]
