@@ -109,7 +109,6 @@ module TeX
       end
 
       def initialize(bcp47 = nil)
-        # byebug if bcp47 == 'mn-cyrl-x-lmc'
         @bcp47 = bcp47
       end
 
