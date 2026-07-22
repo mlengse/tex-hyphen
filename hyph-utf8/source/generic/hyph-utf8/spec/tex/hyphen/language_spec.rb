@@ -513,7 +513,7 @@ describe Language do
       expect(Language.new('qls').private_use?).to be_truthy
     end
 
-    it "returns true otherwise" do
+    it "returns false for non-q-prefixed tags" do
       expect(Language.new('qyz').private_use?).to be_falsey
     end
 
