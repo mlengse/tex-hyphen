@@ -5,7 +5,7 @@ require 'yaml'
 Given /^I set up the environment for texhyphen$/ do
   texhyphdir = File.expand_path('../../../../..', __FILE__)
   unless File.file?("#{texhyphdir}/trunk/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-sl.tex")
-    puts "Could not the tex-hyphen root."
+    puts "Could not find the tex-hyphen root."
     exit(-1)
   end
   ENV['TEXINPUTS'] = "#{texhyphdir}/trunk/hyph-utf8/tex/generic//:#{texhyphdir}/trunk/TL/texmf-dist/tex/generic/config:"

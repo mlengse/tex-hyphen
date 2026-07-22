@@ -5,7 +5,7 @@ RSpec::Matchers.define :equal_or_match_for_all_values do |expected|
     actual.values.equal_or_match? expected
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     full = { }
     actual.keys.each do |engine|
       full[engine] = expected
