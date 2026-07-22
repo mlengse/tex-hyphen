@@ -63,49 +63,22 @@ module TeX
 
       @@eohmarker = '=' * 42
 
+      def self.lazy_metadata(*names)
+        names.each do |name|
+          define_method(name) do
+            extract_metadata unless instance_variable_get(:"@#{name}")
+            instance_variable_get(:"@#{name}")
+          end
+        end
+      end
+
+      lazy_metadata :babelname, :description, :use_old_loader,
+        :use_old_patterns_comment, :legacy_patterns, :luaspecial,
+        :message, :known_bugs, :authors,
+        :licences, :lefthyphenmin, :righthyphenmin
+
       def iso639
         @bcp47.split('-').first
-      end
-
-      # FIXME Find something better than all that extract_metadata unless @blah nonsens
-      def babelname
-        extract_metadata unless @babelname
-        @babelname
-      end
-
-      def description
-        extract_metadata unless @description
-        @description
-      end
-
-      def use_old_loader
-        extract_metadata unless @use_old_loader
-        @use_old_loader
-      end
-
-      def use_old_patterns_comment
-        extract_metadata unless @use_old_patterns_comment
-        @use_old_patterns_comment
-      end
-
-      def legacy_patterns
-        extract_metadata unless @legacy_patterns
-        @legacy_patterns
-      end
-
-      def luaspecial
-        extract_metadata unless @luaspecial
-        @luaspecial
-      end
-
-      def message
-        extract_metadata unless @message
-        @message
-      end
-
-      def known_bugs
-        extract_metadata unless @known_bugs
-        @known_bugs
       end
 
       def initialize(bcp47 = nil)
@@ -150,21 +123,6 @@ module TeX
       #   'nn' => 'Norwegian',
       #   'sh' => 'Serbian',
       # }
-
-      def licences
-        extract_metadata unless @licences
-        @licences
-      end
-
-      def lefthyphenmin
-        extract_metadata unless @lefthyphenmin
-        @lefthyphenmin
-      end
-
-      def righthyphenmin
-        extract_metadata unless @righthyphenmin
-        @righthyphenmin
-      end
 
       # Strictly speaking a misnomer, because grc-x-ibycus should also return true.
       # But useful for a number of apostrophe-related routines
@@ -226,11 +184,6 @@ module TeX
 
       def comments_and_licence # Major TODO extract everything into YAML, and write .yml
         @comments_and_licence ||= readtexfile.gsub(/(.*)\\patterns.*/m,'\1')
-      end
-
-      def authors
-        extract_metadata unless @authors
-        @authors
       end
 
       def github_link

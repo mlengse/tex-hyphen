@@ -1,4 +1,8 @@
 #!/bin/sh
+set -e
+
+TMPDIR=$(mktemp -d /tmp/hyphXXXXXX)
+trap 'rm -rf "$TMPDIR"' EXIT
 
 if [ z$1 = z-h ] || [ z$1 = z--help ]; then
   echo "Usage: $0 --dry-run || $0"
@@ -13,7 +17,6 @@ if [ ! -z "$(git status -s)" ] && [ z$DRY_RUN != ztrue ]; then
 fi
 
 NAME=hyph-utf8
-TMPDIR=`mktemp -d /tmp/hyphXXXXXX`
 mkdir $TMPDIR/$NAME
 tds_filename="$TMPDIR/$NAME/$NAME.tds.zip"
 ctan_zip_filename="$TMPDIR/$NAME.zip"
@@ -42,7 +45,7 @@ mkdir $ctan_root
 git_root=`realpath \`dirname $0\`/..`
 cd $git_root
 
-git rm $NAME/tex/generic/hyph-utf8/patterns/tex/hyph-grc-x-ibycus.tex # FIXME AR 2025-03-31
+git rm $NAME/tex/generic/hyph-utf8/patterns/tex/hyph-grc-x-ibycus.tex # Temporary: exclude Ibycus Greek from CTAN (AR 2025-03-31)
 git commit -qm 'Silly temporary fix'
 
 git archive --format=zip --prefix=hyphen-tlpsrc/ --output=$tlpsrc_filename_in_tds_zip $release_branch:TL/tlpkg/tlpsrc

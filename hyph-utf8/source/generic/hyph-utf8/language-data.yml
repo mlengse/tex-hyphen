@@ -1,0 +1,162 @@
+# OldLanguage data
+# "use_new_loader"
+# => true - create a new file and use that one
+# => false - use "filename_old_patterns" in language.dat
+# "filename_old_patterns"
+# => [string] - the name used in language.dat if "use_new_loader" is false
+# "eightbitfilename"
+# => [string] - if set, load another file for 8-bit engines
+# "code"
+# => [string] - used in filenames, needs to conform to the standard
+# "name"
+# => [string] -
+# "synonyms" => [],
+# "hyphenmin" => [],
+# "encoding" => nil,
+# "exceptions" => false,
+# "message" => nil,
+
+- code: el-monoton
+  type: rules
+- code: el-polyton
+  type: rules
+- code: grc
+  type: rules
+- code: cop
+  type: rules
+- code: de-1901
+  type: dictionary
+- code: de-1996
+  type: dictionary
+- code: de-ch-1901
+  type: dictionary
+- code: ru
+  type: dictionary
+- code: uk
+- code: af
+  type: dictionary
+- code: ca
+  type: rules
+- code: cs
+  type: dictionary
+  filename_old_patterns_other:
+    - czhyphen.tex
+    - czhyphen.ex
+- code: sk
+  type: dictionary
+  filename_old_patterns_other:
+    - skhyphen.tex
+    - skhyphen.ex
+- code: cy
+  type: dictionary
+- code: da
+  type: dictionary
+  filename_old_patterns_other:
+    - dkcommon.tex
+    - dkspecial.tex
+- code: eo
+  type: rules
+- code: es
+  type: dictionary
+- code: eu
+  type: rules
+- code: fr
+  type: rules
+- code: gl
+  type: rules
+- code: et
+  type: dictionary
+- code: fi
+  type: rules
+- code: hr
+  type: dictionary
+- code: hu
+  type: dictionary
+  source: https://github.com/nagybence/huhyphn/
+- code: hy
+  type: rules
+- code: ia
+  type: dictionary
+- code: id
+  type: rules
+- code: is
+  type: dictionary
+  authors:
+    - jorgen_pind
+    - marteinn_sverrisson
+    - kristinn_gylfason
+- code: ga
+  type: dictionary
+- code: it
+  type: rules
+- code: rm
+  type: rules
+- code: fur
+  type: rules
+- code: pms
+  type: rules
+- code: kmr
+  type: dictionary
+- code: la
+  type: rules
+- code: la-x-classic
+  type: rules
+- code: la-x-liturgic
+  type: rules
+  version: "1.040"
+  last_modified: "2016-05-19"
+- code: lt
+  description_l:
+    - "Hyphenation patterns for Lithuanian in L7X and UTF-8 encodings."
+    - "\\lefthyphenmin and \\righthyphenmin have to be at least 2."
+- code: lv
+  type: dictionary
+- code: nl
+  type: dictionary
+- code: oc
+  type: rules
+- code: pl
+  type: dictionary
+- code: pt
+  type: rules
+- code: zh-latn-pinyin
+  type: rules
+- code: ro
+  type: dictionary
+- code: sl
+  type: dictionary
+- code: hsb
+  type: dictionary
+- code: sv
+  type: dictionary
+- code: tk
+  type: dictionary
+- code: tr
+  type: rules
+- code: en-gb
+  type: dictionary
+- code: en-us
+- code: sh-latn
+  type: dictionary
+- code: sh-cyrl
+- code: mn-cyrl
+  type: dictionary
+  last_modified: "2010-04-03"
+- code: sa
+  type: rules
+- code: nb
+  type: dictionary
+  last_modified: "2012-05-18"
+- code: as
+  type: rules
+- code: th
+  type: dictionary
+  last_modified: "2015-05-07"
+- code: ka
+  type: dictionary
+- code: cu
+  type: machine learning
+- code: be
+  type: rules
+- code: pi
+  type: rules

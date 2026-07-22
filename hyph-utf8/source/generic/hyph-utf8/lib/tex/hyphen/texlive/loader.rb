@@ -11,6 +11,11 @@ module TeX
           (encoding == nil) ? "" : encoding.upcase + " "
         end
 
+        # Returns a hash of character lccode overrides for this language.
+        # The lccode hash maps Unicode codepoints to either:
+        #   - a descriptive string (used as a comment in the generated TeX code), or
+        #   - false (meaning: set the lccode to 0 to prevent TeX from treating
+        #     the character as a letter for hyphenation purposes, with no comment).
         def lcchars
           if isgreek?
             # some catcodes for XeTeX
