@@ -142,7 +142,7 @@ module TeX
       end
 
       def private_use?
-        @bcp47.length == 3 || @bcp47[3] == '-' and @bcp47[0] == 'q' and ('a'..'t').include? @bcp47[1]
+        @bcp47[0] == 'q' && ('a'..'t').include?(@bcp47[1]) && (@bcp47.length == 3 || @bcp47[3] == '-')
       end
 
       # TODO This should probably become “macrolanguage name” or something similar
@@ -347,7 +347,7 @@ module TeX
         raise NoLicence unless licences
         licences = [licences] unless licences.is_a? Array
         @licences = licences.map do |licence|
-          raise bcp47 if licence.is_a? String
+          raise InvalidMetadata, bcp47 if licence.is_a? String
           next if licence.values == [nil]
           licence.dig('name') || 'custom'
         end.compact
