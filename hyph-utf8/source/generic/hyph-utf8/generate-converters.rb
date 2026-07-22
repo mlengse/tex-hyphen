@@ -143,7 +143,7 @@ end
 			first_byte_code = first_byte_code.hex
 			size = chars[0].bytes.size
 			if size != 2 then
-				throw "The encoding #{encoding} uses more than two bytes to encode characters"
+				raise "The encoding #{encoding} uses more than two bytes to encode characters"
 			else
 
 				file_out.printf("\\def^^%02x#1{%%\n", first_byte_code)
