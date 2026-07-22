@@ -12,7 +12,7 @@ Given /^I am( not)? testing (.*?)$/ do |not_word, engine|
 end
 
 Given /^the main language is (.*?)(?: with (.*))?$/ do |language, options|
-  `kpsewhich gloss-#{language.downcase}.ldf`.should be_true
+  `kpsewhich gloss-#{language.downcase}.ldf`.should eq(true)
   $?.exitstatus.should == 0
   step "I use package polyglossia"
   opts = if options then "[#{options.split(/\s+and\s+/).join(',')}]" else "" end
