@@ -3,8 +3,6 @@
 require_relative 'hyph-utf8'
 require_relative 'lib/tex/hyphen'
 require_relative 'lib/tex/hyphen/texlive'
-include TeX::Hyphen
-include TeXLive
 
 # this file generates patterns for pTeX out of the plain ones
 
@@ -31,7 +29,7 @@ header = <<-HEADER
 HEADER
 
 print '[1;36mGenerating [0;34mpTeX patterns[0m for (skipped # reason): '
-Language.all.sort.each do |language|
+TeX::Hyphen::Language.all.sort.each do |language|
   if language.use_old_patterns_comment || !language.encoding || language.encoding == 'ascii'
     if language.use_old_patterns_comment # FIXME This skips [de-1996] and [de-1901]!!
       reason = 'legacy patterns'
@@ -48,7 +46,7 @@ Language.all.sort.each do |language|
   bcp47 = language.bcp47
 
   print '[0;32m', bcp47,  '[0m '
-  File.open(File.join(PATH::PTEX, sprintf('hyph-%s.%s.tex', bcp47, language.encoding)), 'w') do |file_ptex|
+  File.open(File.join(TeX::Hyphen::PATH::PTEX, sprintf('hyph-%s.%s.tex', bcp47, language.encoding)), 'w') do |file_ptex|
     patterns   = language.patterns
     exceptions = language.exceptions
 

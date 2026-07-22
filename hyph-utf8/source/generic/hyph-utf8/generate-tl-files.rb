@@ -5,16 +5,14 @@
 
 require_relative 'lib/tex/hyphen'
 require_relative 'lib/tex/hyphen/texlive'
-include TeX::Hyphen
-include TeXLive
 
 #--------#
 # TLPSRC #
 #--------#
 
 print '[1;36mGenerating[0m [0;34m.tlpsrc files[0m for packages: '
-Package.all.sort.each do |package|
-	tlpsrcname = File.join(PATH::TLPSRC, sprintf('hyphen-%s.tlpsrc', package.name.safe))
+	TeX::Hyphen::Package.all.sort.each do |package|
+	tlpsrcname = File.join(TeX::Hyphen::PATH::TLPSRC, sprintf('hyphen-%s.tlpsrc', package.name.safe))
 	file_tlpsrc = File.open(tlpsrcname, 'w')
 	print '[0;32m', package.name.safe, '[0m '
 
@@ -57,10 +55,10 @@ end
 #--------------------------#
 # language.dat and friends #
 #--------------------------#
-ldatfile = File.join PATH::LANGUAGE_DAT, 'language.dat'
+ldatfile = File.join TeX::Hyphen::PATH::LANGUAGE_DAT, 'language.dat'
 File.open(ldatfile, 'w') do |file|
 	puts '[1;36mGenerating[0m [0;34mlanguage.dat[0m'
-	Package.all.sort.each do |package|
+TeX::Hyphen::Package.all.sort.each do |package|
 		package.languages.each do |language|
 			# Main language name
 			file.printf "%s\t%s\n", language.babelname, language.loadhyph

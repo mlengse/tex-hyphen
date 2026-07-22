@@ -5,8 +5,6 @@
 
 require_relative 'lib/tex/hyphen'
 require_relative 'lib/tex/hyphen/texlive'
-include TeX::Hyphen
-include TeXLive
 
 #text_if_native_utf = "\input pattern-loader.tex\n\\ifNativeUtfEightPatterns"
 
@@ -20,7 +18,7 @@ def output(file, string, indent = 0)
 end
 
 print '[1;36mGenerating[0m [0;34mloaders[0m for '
-Language.all.each do |language|
+TeX::Hyphen::Language.all.each do |language|
 
 # puts language.bcp47
 
@@ -62,7 +60,7 @@ Language.all.each do |language|
   next if language.use_old_loader
     print '[0;32m', language.bcp47, '[0m '
 
-    filename = File.join(PATH::LOADER, language.loadhyph)
+    filename = File.join(TeX::Hyphen::PATH::LOADER, language.loadhyph)
     File.open(filename, "w") do |file|
       # puts language.bcp47
       file.puts text_header
