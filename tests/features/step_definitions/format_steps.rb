@@ -20,6 +20,6 @@ When /^I make the format for (.*?)$/ do |format|
 end
 
 Then /^it should make a format file$/ do
-  File.file?("#{@format}.fmt").should be_true
+  File.file?("#{@format}.fmt").should eq(true)
   FileUtils.rmtree(@tmpdir)
 end
