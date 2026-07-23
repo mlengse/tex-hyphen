@@ -416,7 +416,7 @@ describe TeX::Hyphen::Language do
     it "initialises the hydra if needed" do
       language = TeX::Hyphen::Language.new('de-1901')
       language.hyphenate('Zwangsvollstreckungsmaßnahme')
-      expect(language.instance_variable_get(:@hydra)).to be_a TeX::Hyphen::Hydra
+      expect(language.instance_variable_get(:@hydra)).to be_a Hydra
     end
 
     it "calls #exceptions" do
@@ -474,7 +474,7 @@ describe TeX::Hyphen::Language do
     it "raises an exception if @authors is nil or empty" do
       not_church_slavonic = TeX::Hyphen::Language.new('qcu')
       allow(File).to receive(:read).and_return "code: qcu\nlicence:\n  name:\n    MIT"
-      expect { not_church_slavonic.authors }.to raise_exception TeX::Hyphen::NoTeX::Hyphen::Author
+      expect { not_church_slavonic.authors }.to raise_exception TeX::Hyphen::NoAuthor
     end
 
     it "doesn’t crash on invalid licence entries" do
@@ -623,7 +623,7 @@ describe TeX::Hyphen::Language do
     end
   end
 
-  describe TeX::Hyphen::Language::TeXLive do
+  describe TeX::Hyphen::TeXLive do
     describe '#loadhyph' do
       it "returns the name of the pattern loader file" do
         expect(TeX::Hyphen::Language.new('cy').loadhyph).to eq 'loadhyph-cy.tex'
@@ -702,7 +702,7 @@ describe TeX::Hyphen::Language do
 
     describe '#extract_characters' do
       it "extracts the list of characters with in lowercase and uppercase" do
-        expect(TeX::Hyphen::Language.new('id').extract_characters).to eq (('a'..'z').to_a - ['x']).map { |c| c + c.upcase }
+        expect(TeX::Hyphen::Language.new('id').extract_characters).to eq ('a'..'z').map { |c| c + c.upcase }
       end
     end
 
@@ -806,11 +806,11 @@ describe TeX::Hyphen::Language do
   end
 end
 
-describe TeX::Hyphen::Package do
-  let(:latin) { TeX::Hyphen::Package.find('latin') }
-  let(:german) { TeX::Hyphen::Package.find('german') }
-  let(:hungarian) { TeX::Hyphen::Package.find('hungarian') }
-  let(:norwegian) { TeX::Hyphen::Package.find('norwegian') }
+describe TeX::Hyphen::TeXLive::Package do
+  let(:latin) { TeX::Hyphen::TeXLive::Package.find('latin') }
+  let(:german) { TeX::Hyphen::TeXLive::Package.find('german') }
+  let(:hungarian) { TeX::Hyphen::TeXLive::Package.find('hungarian') }
+  let(:norwegian) { TeX::Hyphen::TeXLive::Package.find('norwegian') }
 
   describe "Instance variables" do
     it "has a @name" do
@@ -820,7 +820,7 @@ describe TeX::Hyphen::Package do
 
   describe '.new' do
     it "initialises @languages to an empty array" do
-      package = TeX::Hyphen::Package.new('mongolian')
+      package = TeX::Hyphen::TeXLive::Package.new('mongolian')
       expect(package.instance_variable_get :@languages).to eq []
     end
   end
@@ -852,13 +852,13 @@ describe TeX::Hyphen::Package do
         There are no known patterns for written Schwyzerduetsch.
       EOD
       description = text.split("\n").map(&:strip).join("\n")
-      expect(TeX::Hyphen::Package.find('german').description).to match description
+      expect(TeX::Hyphen::TeXLive::Package.find('german').description).to match description
     end
   end
 
   describe '#add_language' do
     it "adds a language to the package" do
-      package = TeX::Hyphen::Package.new('indic')
+      package = TeX::Hyphen::TeXLive::Package.new('indic')
       assamese = TeX::Hyphen::Language.new('as')
       package.add_language(assamese)
       expect(package.instance_variable_get(:@languages).first).to eq assamese
@@ -908,7 +908,7 @@ describe TeX::Hyphen::Package do
   end
 
   describe '#<=>' do
-    it "compares two TeX::Hyphen::Package’s" do
+    it "compares two TeX::Hyphen::TeXLive::Package’s" do
       # puts hungarian.class, german.class
       expect(hungarian.<=> german).to eq 1
     end
@@ -916,7 +916,7 @@ describe TeX::Hyphen::Package do
 
   describe '#find' do
     it "returns the package with that name" do
-      expect(TeX::Hyphen::Package.find('norwegian')).to eq norwegian
+      expect(TeX::Hyphen::TeXLive::Package.find('norwegian')).to eq norwegian
     end
   end
 end
