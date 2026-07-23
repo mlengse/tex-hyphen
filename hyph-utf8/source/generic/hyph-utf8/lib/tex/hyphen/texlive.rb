@@ -21,5 +21,7 @@ module TeX
       include Source
       include Loader
     end
+
+    Language.include(TeXLive) if defined?(Language)
   end
 end
