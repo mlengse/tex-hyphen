@@ -5,6 +5,7 @@ group :development do
     gem 'rake'
     gem 'rspec'
   end
+  gem 'byebug'
   gem 'irb'
 end
 
